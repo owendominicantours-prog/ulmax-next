@@ -1039,6 +1039,7 @@ export default function Page() {
             <a href="#vehiculos">{copy.service1}</a>
             <a href="#vehiculos">{copy.service2}</a>
             <a href="#vehiculos">{copy.service3}</a>
+            <a href="/admin">Login</a>
           </div>
 
           <div className="footer-col">
@@ -1054,8 +1055,6 @@ export default function Page() {
           <p>{copy.credit}</p>
         </div>
       </footer>
-
-      <a className="admin-door" href="/admin" aria-label="Admin">Admin</a>
 
       <a className="floating-whatsapp" href={makeWhatsAppUrl(settings.phone, copy.whatsappLead)}>
         <MessageCircle size={18} /> WhatsApp
