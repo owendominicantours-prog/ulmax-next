@@ -35,7 +35,7 @@ const ADMIN_CREDENTIALS = {
 
 const defaultSettings = {
   company: 'ULMAX Rent Car',
-  phone: '18293397266',
+  phone: '18493848233',
   callPhone: '18493486233',
   city: 'Punta Cana',
   tagline: 'Vehiculos confiables en Punta Cana con entrega en aeropuerto, hoteles, villas y soporte directo.',
@@ -823,7 +823,7 @@ export default function Page() {
 
           <div className="footer-col">
             <span>Contacto</span>
-            <a href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, necesito informacion.')}>WhatsApp: +1 (829) 339-7266</a>
+            <a href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, necesito informacion.')}>WhatsApp: +1 (849) 384-8233</a>
             <a href={`tel:+${cleanPhone(settings.callPhone, '18493486233')}`}>Llamadas: +1 (849) 348-6233</a>
             <a href="#reservar">Solicitar reserva</a>
           </div>
