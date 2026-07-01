@@ -35,9 +35,10 @@ const ADMIN_CREDENTIALS = {
 
 const defaultSettings = {
   company: 'ULMAX Rent Car',
-  phone: '18293937266',
+  phone: '18293397266',
+  callPhone: '18493486233',
   city: 'Punta Cana',
-  tagline: 'Renta de vehiculos simple, segura y asistida por WhatsApp.',
+  tagline: 'Vehiculos confiables en Punta Cana con entrega en aeropuerto, hoteles, villas y soporte directo.',
 };
 
 const defaultZones = [
@@ -186,6 +187,10 @@ function makeWhatsAppUrl(phone, text) {
   return `https://wa.me/${normalized}?text=${encodeURIComponent(text)}`;
 }
 
+function cleanPhone(phone, fallback = defaultSettings.phone) {
+  return String(phone || fallback).replace(/\D/g, '');
+}
+
 export default function Page() {
   const [vehicles, setVehicles] = useState(defaultVehicles);
   const [zones, setZones] = useState(defaultZones);
@@ -275,7 +280,7 @@ export default function Page() {
 
   function sendReservation() {
     const lines = [
-      `Hola ${settings.company}, quiero reservar un vehiculo.`,
+      `Hola ${settings.company}, quiero reservar un vehiculo en Punta Cana.`,
       '',
       `Vehiculo: ${reservation.vehicle || 'No seleccionado'}`,
       `Nombre: ${reservation.name || 'Pendiente'}`,
@@ -369,7 +374,7 @@ export default function Page() {
             <a href="#reservar">Reservar</a>
             <a href="#contacto">Contacto</a>
           </nav>
-          <a className="header-cta" href={`tel:+${settings.phone.replace(/\D/g, '')}`}>
+          <a className="header-cta" href={`tel:+${cleanPhone(settings.callPhone, '18493486233')}`}>
             Llamar ahora
           </a>
         </div>
@@ -385,12 +390,12 @@ export default function Page() {
             </span>
             <h1>Renta un vehiculo sin complicarte.</h1>
             <p>
-              Una web simple para que el cliente elija vehiculo, complete sus datos y envie la solicitud directo a
-              WhatsApp. Sin pagos forzados y con confirmacion humana.
+              Recibe tu carro en el aeropuerto, hotel, villa o Airbnb. Reserva por WhatsApp, confirma con una persona
+              real y maneja Punta Cana con tranquilidad desde el primer dia.
             </p>
             <div className="hero-actions">
               <a className="primary-btn" href="#vehiculos">Ver vehiculos</a>
-              <a className="secondary-btn" href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX, necesito rentar un vehiculo.')}>
+              <a className="secondary-btn" href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, quiero rentar un vehiculo en Punta Cana. Fecha, zona y tipo de carro:')}>
                 WhatsApp
               </a>
             </div>
@@ -443,7 +448,7 @@ export default function Page() {
           {[
             ['Entrega flexible', 'Aeropuerto, hotel, villa o Airbnb', Plane],
             ['Seguro incluido', 'Vehiculos revisados antes de entregar', ShieldCheck],
-            ['Confirmacion humana', 'Todo se coordina por WhatsApp', MessageCircle],
+            ['Confirmacion directa', 'Un asesor valida tu reserva por WhatsApp', MessageCircle],
             ['Soporte local', 'Asistencia antes y durante tu renta', Clock3],
           ].map(([title, text, Icon]) => (
             <article key={title} className="trust-item">
@@ -462,7 +467,7 @@ export default function Page() {
           <div>
             <span className="eyebrow dark">Catalogo</span>
             <h2>Vehiculos disponibles</h2>
-            <p>El cliente ve capacidad, maletas, zona recomendada y puede reservar por WhatsApp.</p>
+            <p>Elige el vehiculo ideal para moverte por Punta Cana, Bavaro, Cap Cana, hoteles y aeropuertos.</p>
           </div>
           <div className="filters">
             {categories.map((category) => (
@@ -516,7 +521,7 @@ export default function Page() {
           <aside className="summary-card">
             <span className="eyebrow dark">Solicitud</span>
             <h2>Reserva por WhatsApp</h2>
-            <p>No se cobra en la web. ULMAX confirma precio, disponibilidad y documentos por WhatsApp.</p>
+            <p>Sin pagos forzados en la web. ULMAX confirma disponibilidad, precio final, entrega y documentos por WhatsApp.</p>
             <div className="selected-vehicle">
               <Car size={28} />
               <div>
@@ -527,7 +532,7 @@ export default function Page() {
             <ul>
               <li><CheckCircle2 size={18} /> Confirmacion personalizada</li>
               <li><CheckCircle2 size={18} /> Entrega en zona coordinada</li>
-              <li><CheckCircle2 size={18} /> Soporte antes de la entrega</li>
+              <li><CheckCircle2 size={18} /> Soporte local antes y durante la renta</li>
             </ul>
           </aside>
 
@@ -756,6 +761,16 @@ export default function Page() {
                   <input value={settings.phone} onChange={(event) => setSettings({ ...settings, phone: event.target.value })} />
                 </div>
               </div>
+              <div className="two-cols">
+                <div>
+                  <label>Telefono de llamadas</label>
+                  <input value={settings.callPhone || ''} onChange={(event) => setSettings({ ...settings, callPhone: event.target.value })} />
+                </div>
+                <div>
+                  <label>Texto corto</label>
+                  <input value={settings.tagline} onChange={(event) => setSettings({ ...settings, tagline: event.target.value })} />
+                </div>
+              </div>
               <div className="zone-row">
                 <input placeholder="Nueva zona" value={zoneDraft} onChange={(event) => setZoneDraft(event.target.value)} />
                 <button className="primary-btn compact" onClick={addZone}>Agregar</button>
@@ -808,7 +823,9 @@ export default function Page() {
         </div>
       </footer>
 
-      <a className="floating-whatsapp" href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX, necesito rentar un vehiculo.')}>
+      <a className="admin-door" href="/admin" aria-label="Admin">Admin</a>
+
+      <a className="floating-whatsapp" href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, quiero rentar un vehiculo en Punta Cana. Fecha, zona y tipo de carro:')}>
         <MessageCircle size={18} /> WhatsApp
       </a>
     </main>
