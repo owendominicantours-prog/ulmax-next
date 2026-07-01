@@ -34,6 +34,10 @@ const ADMIN_CREDENTIALS = {
   password: 'Ulmax2026!',
 };
 
+const CURRENT_WHATSAPP = '18493848233';
+const CURRENT_CALL_PHONE = '18493486233';
+const OLD_WHATSAPP_NUMBERS = new Set(['18293397266', '18293937266']);
+
 const UI_TEXT = {
   es: {
     navVehicles: 'Vehiculos',
@@ -225,8 +229,8 @@ const UI_TEXT = {
 
 const defaultSettings = {
   company: 'ULMAX Rent Car',
-  phone: '18493848233',
-  callPhone: '18493486233',
+  phone: CURRENT_WHATSAPP,
+  callPhone: CURRENT_CALL_PHONE,
   city: 'Punta Cana',
   tagline: 'Vehiculos confiables en Punta Cana con entrega en aeropuerto, hoteles, villas y soporte directo.',
 };
@@ -381,6 +385,17 @@ function cleanPhone(phone, fallback = defaultSettings.phone) {
   return String(phone || fallback).replace(/\D/g, '');
 }
 
+function normalizeSettings(value) {
+  const settings = { ...defaultSettings, ...value };
+  const phone = cleanPhone(settings.phone);
+
+  return {
+    ...settings,
+    phone: !phone || OLD_WHATSAPP_NUMBERS.has(phone) ? CURRENT_WHATSAPP : phone,
+    callPhone: cleanPhone(settings.callPhone, CURRENT_CALL_PHONE),
+  };
+}
+
 export default function Page() {
   const [vehicles, setVehicles] = useState(defaultVehicles);
   const [zones, setZones] = useState(defaultZones);
@@ -401,7 +416,7 @@ export default function Page() {
   useEffect(() => {
     setVehicles(safeJson(localStorage.getItem(STORAGE_KEYS.vehicles), defaultVehicles));
     setZones(safeJson(localStorage.getItem(STORAGE_KEYS.zones), defaultZones));
-    setSettings(safeJson(localStorage.getItem(STORAGE_KEYS.settings), defaultSettings));
+    setSettings(normalizeSettings(safeJson(localStorage.getItem(STORAGE_KEYS.settings), defaultSettings)));
     const isAdminPath = window.location.pathname.startsWith('/admin');
     setShowAdminPanel(isAdminPath);
     setAdminAuth(isAdminPath || localStorage.getItem(STORAGE_KEYS.adminSession) === 'true');
