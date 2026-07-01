@@ -812,14 +812,40 @@ export default function Page() {
       ) : null}
 
       <footer id="contacto" className="footer">
-        <div className="wrap footer-inner">
-          <div>
+        <div className="wrap footer-grid">
+          <div className="footer-brand">
             <b>{settings.company}</b>
             <p>{settings.tagline}</p>
+            <a className="footer-whatsapp" href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, necesito informacion para rentar un vehiculo en Punta Cana.')}>
+              <MessageCircle size={18} /> WhatsApp 24/7
+            </a>
           </div>
-          <a className="footer-whatsapp" href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX, necesito informacion.')}>
-            <MessageCircle size={18} /> WhatsApp 24/7
-          </a>
+
+          <div className="footer-col">
+            <span>Contacto</span>
+            <a href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, necesito informacion.')}>WhatsApp: +1 (829) 339-7266</a>
+            <a href={`tel:+${cleanPhone(settings.callPhone, '18493486233')}`}>Llamadas: +1 (849) 348-6233</a>
+            <a href="#reservar">Solicitar reserva</a>
+          </div>
+
+          <div className="footer-col">
+            <span>Servicios</span>
+            <a href="#vehiculos">Rent car en Punta Cana</a>
+            <a href="#vehiculos">Entrega en aeropuerto PUJ</a>
+            <a href="#vehiculos">Hoteles, villas y Airbnb</a>
+          </div>
+
+          <div className="footer-col">
+            <span>Zonas</span>
+            <a href="#vehiculos">Punta Cana y Bavaro</a>
+            <a href="#vehiculos">Cap Cana y Uvero Alto</a>
+            <a href="#vehiculos">Santo Domingo Airport</a>
+          </div>
+        </div>
+
+        <div className="wrap footer-bottom">
+          <p>© 2026 ULMAX Rent Car. Todos los derechos reservados.</p>
+          <p>Desarrollado por Cynador - Advertising, Marketing Online & Design - Diseño y Desarrollo Web</p>
         </div>
       </footer>
 
