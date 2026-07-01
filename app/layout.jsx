@@ -1,7 +1,7 @@
 import './globals.css';
 export const metadata = {
-  title: 'ULMAX Rent Car | Vehiculos en Punta Cana',
-  description: 'Renta vehiculos en Punta Cana, Bavaro, aeropuertos, hoteles y villas con confirmacion por WhatsApp.',
+  title: 'ULMAX Rent Car | Punta Cana car rental',
+  description: 'Car rental in Punta Cana and Bavaro with airport, hotel, villa and Airbnb delivery. Reserva por WhatsApp.',
 };
 
 export default function RootLayout({ children }) {

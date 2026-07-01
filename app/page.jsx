@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useMemo, useState } from 'react';
 import {
@@ -26,11 +26,201 @@ const STORAGE_KEYS = {
   zones: 'ulmaxZonesV2',
   settings: 'ulmaxSettingsV2',
   adminSession: 'ulmaxAdminSessionV2',
+  language: 'ulmaxLanguageV2',
 };
 
 const ADMIN_CREDENTIALS = {
   email: 'admin@ulmax.local',
   password: 'Ulmax2026!',
+};
+
+const UI_TEXT = {
+  es: {
+    navVehicles: 'Vehiculos',
+    navBook: 'Reservar',
+    navContact: 'Contacto',
+    callNow: 'Llamar ahora',
+    heroEyebrow: 'Punta Cana, Bavaro, aeropuertos y hoteles',
+    heroTitle: 'Renta un vehiculo sin complicarte.',
+    heroText:
+      'Recibe tu carro en el aeropuerto, hotel, villa o Airbnb. Reserva por WhatsApp, confirma con una persona real y maneja Punta Cana con tranquilidad desde el primer dia.',
+    viewVehicles: 'Ver vehiculos',
+    quickAria: 'Reserva rapida',
+    quickTitle: 'Reserva rapida',
+    noPay: 'Sin pagar ahora',
+    vehicle: 'Vehiculo',
+    selectVehicle: 'Seleccionar vehiculo',
+    pickup: 'Recogida',
+    zone: 'Zona',
+    date: 'Fecha',
+    continueBooking: 'Continuar reserva',
+    trust: [
+      ['Entrega flexible', 'Aeropuerto, hotel, villa o Airbnb', Plane],
+      ['Seguro incluido', 'Vehiculos revisados antes de entregar', ShieldCheck],
+      ['Confirmacion directa', 'Un asesor valida tu reserva por WhatsApp', MessageCircle],
+      ['Soporte local', 'Asistencia antes y durante tu renta', Clock3],
+    ],
+    catalog: 'Catalogo',
+    vehiclesAvailable: 'Vehiculos disponibles',
+    catalogText: 'Elige el vehiculo ideal para moverte por Punta Cana, Bavaro, Cap Cana, hoteles y aeropuertos.',
+    all: 'Todos',
+    passengers: 'pasajeros',
+    bags: 'maletas',
+    reserve: 'Reservar',
+    request: 'Solicitud',
+    bookWhatsApp: 'Reserva por WhatsApp',
+    requestText:
+      'Sin pagos forzados en la web. ULMAX confirma disponibilidad, precio final, entrega y documentos por WhatsApp.',
+    selectedVehicle: 'Vehiculo seleccionado',
+    pending: 'Pendiente',
+    summary: [
+      'Confirmacion personalizada',
+      'Entrega en zona coordinada',
+      'Soporte local antes y durante la renta',
+    ],
+    formTitle: 'Datos de la reserva',
+    quickFields: 'Campos rapidos',
+    name: 'Nombre',
+    delivery: 'Entrega',
+    selectZone: 'Seleccionar zona',
+    time: 'Hora',
+    days: 'Dias',
+    flight: 'Vuelo opcional',
+    notes: 'Notas',
+    sendWhatsApp: 'Enviar solicitud por WhatsApp',
+    process: 'Proceso',
+    processTitle: 'Simple para el cliente y facil para ULMAX.',
+    steps: [
+      ['Elige vehiculo', 'El usuario compara capacidad, categoria y zona.'],
+      ['Completa solicitud', 'Fecha, hora, recogida, entrega y contacto.'],
+      ['ULMAX confirma', 'El equipo valida disponibilidad y precio final.'],
+    ],
+    footerTagline: 'Vehiculos confiables en Punta Cana con entrega en aeropuerto, hoteles, villas y soporte directo.',
+    footerContact: 'Contacto',
+    footerServices: 'Servicios',
+    footerZones: 'Zonas',
+    callLabel: 'Llamadas',
+    requestReservation: 'Solicitar reserva',
+    service1: 'Rent car en Punta Cana',
+    service2: 'Entrega en aeropuerto PUJ',
+    service3: 'Hoteles, villas y Airbnb',
+    zone1: 'Punta Cana y Bavaro',
+    zone2: 'Cap Cana y Uvero Alto',
+    zone3: 'Santo Domingo Airport',
+    rights: 'Copyright 2026 ULMAX Rent Car. Todos los derechos reservados.',
+    credit: 'Desarrollado por Cynador - Advertising, Marketing Online & Design - Diseno y Desarrollo Web',
+    whatsappLead: 'Hola ULMAX Rent Car, quiero rentar un vehiculo en Punta Cana. Fecha, zona y tipo de carro:',
+    infoLead: 'Hola ULMAX Rent Car, necesito informacion para rentar un vehiculo en Punta Cana.',
+    bookingLead: 'Hola ULMAX Rent Car, quiero reservar un vehiculo en Punta Cana.',
+    labels: {
+      vehicle: 'Vehiculo',
+      name: 'Nombre',
+      phone: 'WhatsApp',
+      pickup: 'Recogida',
+      dropoff: 'Entrega',
+      date: 'Fecha',
+      time: 'Hora',
+      days: 'Dias',
+      flight: 'Vuelo',
+      notes: 'Notas',
+      notSelected: 'No seleccionado',
+      noNotes: 'Sin notas',
+      notProvided: 'No indicado',
+    },
+  },
+  en: {
+    navVehicles: 'Vehicles',
+    navBook: 'Book',
+    navContact: 'Contact',
+    callNow: 'Call now',
+    heroEyebrow: 'Punta Cana, Bavaro, airports and hotels',
+    heroTitle: 'Rent a car in Punta Cana without stress.',
+    heroText:
+      'Get your car at the airport, hotel, villa or Airbnb. Book by WhatsApp, confirm with a real person and drive around Punta Cana with confidence from day one.',
+    viewVehicles: 'View vehicles',
+    quickAria: 'Quick booking',
+    quickTitle: 'Quick booking',
+    noPay: 'No payment now',
+    vehicle: 'Vehicle',
+    selectVehicle: 'Select vehicle',
+    pickup: 'Pick-up',
+    zone: 'Zone',
+    date: 'Date',
+    continueBooking: 'Continue booking',
+    trust: [
+      ['Flexible delivery', 'Airport, hotel, villa or Airbnb', Plane],
+      ['Insurance included', 'Vehicles checked before delivery', ShieldCheck],
+      ['Direct confirmation', 'An advisor validates your booking by WhatsApp', MessageCircle],
+      ['Local support', 'Assistance before and during your rental', Clock3],
+    ],
+    catalog: 'Catalog',
+    vehiclesAvailable: 'Available vehicles',
+    catalogText: 'Choose the right vehicle for Punta Cana, Bavaro, Cap Cana, hotels and airports.',
+    all: 'All',
+    passengers: 'passengers',
+    bags: 'bags',
+    reserve: 'Reserve',
+    request: 'Request',
+    bookWhatsApp: 'Book by WhatsApp',
+    requestText:
+      'No forced online payments. ULMAX confirms availability, final price, delivery and documents by WhatsApp.',
+    selectedVehicle: 'Selected vehicle',
+    pending: 'Pending',
+    summary: [
+      'Personalized confirmation',
+      'Delivery in the agreed area',
+      'Local support before and during the rental',
+    ],
+    formTitle: 'Booking details',
+    quickFields: 'Fast fields',
+    name: 'Name',
+    delivery: 'Drop-off',
+    selectZone: 'Select zone',
+    time: 'Time',
+    days: 'Days',
+    flight: 'Flight optional',
+    notes: 'Notes',
+    sendWhatsApp: 'Send request by WhatsApp',
+    process: 'Process',
+    processTitle: 'Simple for the customer and easy for ULMAX.',
+    steps: [
+      ['Choose a vehicle', 'Compare capacity, category and recommended area.'],
+      ['Complete the request', 'Date, time, pick-up, drop-off and contact details.'],
+      ['ULMAX confirms', 'The team validates availability and final price.'],
+    ],
+    footerTagline: 'Reliable vehicles in Punta Cana with airport, hotel, villa and direct support delivery.',
+    footerContact: 'Contact',
+    footerServices: 'Services',
+    footerZones: 'Areas',
+    callLabel: 'Calls',
+    requestReservation: 'Request booking',
+    service1: 'Rent a car in Punta Cana',
+    service2: 'PUJ airport delivery',
+    service3: 'Hotels, villas and Airbnb',
+    zone1: 'Punta Cana and Bavaro',
+    zone2: 'Cap Cana and Uvero Alto',
+    zone3: 'Santo Domingo Airport',
+    rights: 'Copyright 2026 ULMAX Rent Car. All rights reserved.',
+    credit: 'Developed by Cynador - Advertising, Marketing Online & Design - Web Design and Development',
+    whatsappLead: 'Hello ULMAX Rent Car, I want to rent a car in Punta Cana. Date, area and car type:',
+    infoLead: 'Hello ULMAX Rent Car, I need information to rent a car in Punta Cana.',
+    bookingLead: 'Hello ULMAX Rent Car, I want to book a car in Punta Cana.',
+    labels: {
+      vehicle: 'Vehicle',
+      name: 'Name',
+      phone: 'WhatsApp',
+      pickup: 'Pick-up',
+      dropoff: 'Drop-off',
+      date: 'Date',
+      time: 'Time',
+      days: 'Days',
+      flight: 'Flight',
+      notes: 'Notes',
+      notSelected: 'Not selected',
+      noNotes: 'No notes',
+      notProvided: 'Not provided',
+    },
+  },
 };
 
 const defaultSettings = {
@@ -205,6 +395,8 @@ export default function Page() {
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
   const [loginError, setLoginError] = useState('');
+  const [language, setLanguage] = useState('es');
+  const copy = UI_TEXT[language] || UI_TEXT.es;
 
   useEffect(() => {
     setVehicles(safeJson(localStorage.getItem(STORAGE_KEYS.vehicles), defaultVehicles));
@@ -213,6 +405,7 @@ export default function Page() {
     const isAdminPath = window.location.pathname.startsWith('/admin');
     setShowAdminPanel(isAdminPath);
     setAdminAuth(isAdminPath || localStorage.getItem(STORAGE_KEYS.adminSession) === 'true');
+    setLanguage(localStorage.getItem(STORAGE_KEYS.language) === 'en' ? 'en' : 'es');
 
     const selected = new URLSearchParams(window.location.search).get('vehiculo');
     if (selected) {
@@ -236,6 +429,11 @@ export default function Page() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(settings));
   }, [settings]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.language, language);
+    document.documentElement.lang = language;
+  }, [language]);
 
   const categories = useMemo(() => ['Todos', ...new Set(vehicles.map((item) => item.category))], [vehicles]);
   const visibleVehicles = useMemo(
@@ -279,19 +477,20 @@ export default function Page() {
   }
 
   function sendReservation() {
+    const labels = copy.labels;
     const lines = [
-      `Hola ${settings.company}, quiero reservar un vehiculo en Punta Cana.`,
+      copy.bookingLead.replace('ULMAX Rent Car', settings.company),
       '',
-      `Vehiculo: ${reservation.vehicle || 'No seleccionado'}`,
-      `Nombre: ${reservation.name || 'Pendiente'}`,
-      `WhatsApp: ${reservation.phone || 'Pendiente'}`,
-      `Recogida: ${reservation.pickup || 'Pendiente'}`,
-      `Entrega: ${reservation.dropoff || 'Pendiente'}`,
-      `Fecha: ${reservation.date || 'Pendiente'}`,
-      `Hora: ${reservation.time || 'Pendiente'}`,
-      `Dias: ${reservation.days || 'Pendiente'}`,
-      `Vuelo: ${reservation.flight || 'No indicado'}`,
-      `Notas: ${reservation.notes || 'Sin notas'}`,
+      `${labels.vehicle}: ${reservation.vehicle || labels.notSelected}`,
+      `${labels.name}: ${reservation.name || copy.pending}`,
+      `${labels.phone}: ${reservation.phone || copy.pending}`,
+      `${labels.pickup}: ${reservation.pickup || copy.pending}`,
+      `${labels.dropoff}: ${reservation.dropoff || copy.pending}`,
+      `${labels.date}: ${reservation.date || copy.pending}`,
+      `${labels.time}: ${reservation.time || copy.pending}`,
+      `${labels.days}: ${reservation.days || copy.pending}`,
+      `${labels.flight}: ${reservation.flight || labels.notProvided}`,
+      `${labels.notes}: ${reservation.notes || labels.noNotes}`,
     ];
     window.open(makeWhatsAppUrl(settings.phone, lines.join('\n')), '_blank');
   }
@@ -370,12 +569,16 @@ export default function Page() {
             ULMAX<span>Rent Car</span>
           </a>
           <nav className="desktop-nav" aria-label="Principal">
-            <a href="#vehiculos">Vehiculos</a>
-            <a href="#reservar">Reservar</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#vehiculos">{copy.navVehicles}</a>
+            <a href="#reservar">{copy.navBook}</a>
+            <a href="#contacto">{copy.navContact}</a>
           </nav>
+          <div className="language-switch" aria-label="Language">
+            <button className={language === 'es' ? 'active' : ''} onClick={() => setLanguage('es')}>ES</button>
+            <button className={language === 'en' ? 'active' : ''} onClick={() => setLanguage('en')}>EN</button>
+          </div>
           <a className="header-cta" href={`tel:+${cleanPhone(settings.callPhone, '18493486233')}`}>
-            Llamar ahora
+            {copy.callNow}
           </a>
         </div>
       </header>
@@ -386,49 +589,46 @@ export default function Page() {
           <div className="hero-copy">
             <span className="eyebrow">
               <MapPin size={16} />
-              Punta Cana, Bavaro, aeropuertos y hoteles
+              {copy.heroEyebrow}
             </span>
-            <h1>Renta un vehiculo sin complicarte.</h1>
-            <p>
-              Recibe tu carro en el aeropuerto, hotel, villa o Airbnb. Reserva por WhatsApp, confirma con una persona
-              real y maneja Punta Cana con tranquilidad desde el primer dia.
-            </p>
+            <h1>{copy.heroTitle}</h1>
+            <p>{copy.heroText}</p>
             <div className="hero-actions">
-              <a className="primary-btn" href="#vehiculos">Ver vehiculos</a>
-              <a className="secondary-btn" href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, quiero rentar un vehiculo en Punta Cana. Fecha, zona y tipo de carro:')}>
+              <a className="primary-btn" href="#vehiculos">{copy.viewVehicles}</a>
+              <a className="secondary-btn" href={makeWhatsAppUrl(settings.phone, copy.whatsappLead)}>
                 WhatsApp
               </a>
             </div>
           </div>
 
-          <div className="booking-card" aria-label="Reserva rapida">
+          <div className="booking-card" aria-label={copy.quickAria}>
             <div className="card-heading">
-              <span>Reserva rapida</span>
-              <b>Sin pagar ahora</b>
+              <span>{copy.quickTitle}</span>
+              <b>{copy.noPay}</b>
             </div>
-            <label>Vehiculo</label>
+            <label>{copy.vehicle}</label>
             <select
               value={reservation.vehicle}
               onChange={(event) => setReservation({ ...reservation, vehicle: event.target.value })}
             >
-              <option value="">Seleccionar vehiculo</option>
+              <option value="">{copy.selectVehicle}</option>
               {vehicles.map((vehicle) => (
                 <option key={vehicle.id} value={vehicle.name}>{vehicle.name}</option>
               ))}
             </select>
             <div className="two-cols">
               <div>
-                <label>Recogida</label>
+                <label>{copy.pickup}</label>
                 <select
                   value={reservation.pickup}
                   onChange={(event) => setReservation({ ...reservation, pickup: event.target.value })}
                 >
-                  <option value="">Zona</option>
+                  <option value="">{copy.zone}</option>
                   {zones.map((zone) => <option key={zone}>{zone}</option>)}
                 </select>
               </div>
               <div>
-                <label>Fecha</label>
+                <label>{copy.date}</label>
                 <input
                   type="date"
                   value={reservation.date}
@@ -437,7 +637,7 @@ export default function Page() {
               </div>
             </div>
             <button className="primary-btn full" onClick={() => document.getElementById('reservar')?.scrollIntoView({ behavior: 'smooth' })}>
-              Continuar reserva
+              {copy.continueBooking}
             </button>
           </div>
         </div>
@@ -445,12 +645,7 @@ export default function Page() {
 
       <section className="trust-strip">
         <div className="wrap trust-grid">
-          {[
-            ['Entrega flexible', 'Aeropuerto, hotel, villa o Airbnb', Plane],
-            ['Seguro incluido', 'Vehiculos revisados antes de entregar', ShieldCheck],
-            ['Confirmacion directa', 'Un asesor valida tu reserva por WhatsApp', MessageCircle],
-            ['Soporte local', 'Asistencia antes y durante tu renta', Clock3],
-          ].map(([title, text, Icon]) => (
+          {copy.trust.map(([title, text, Icon]) => (
             <article key={title} className="trust-item">
               <Icon size={22} />
               <div>
@@ -465,18 +660,18 @@ export default function Page() {
       <section id="vehiculos" className="section">
         <div className="wrap section-head">
           <div>
-            <span className="eyebrow dark">Catalogo</span>
-            <h2>Vehiculos disponibles</h2>
-            <p>Elige el vehiculo ideal para moverte por Punta Cana, Bavaro, Cap Cana, hoteles y aeropuertos.</p>
+            <span className="eyebrow dark">{copy.catalog}</span>
+            <h2>{copy.vehiclesAvailable}</h2>
+            <p>{copy.catalogText}</p>
           </div>
           <div className="filters">
             {categories.map((category) => (
               <button
                 key={category}
                 className={`filter-btn ${filter === category ? 'active' : ''}`}
-                onClick={() => setFilter(category)}
+              onClick={() => setFilter(category)}
               >
-                {category}
+                {category === 'Todos' ? copy.all : category}
               </button>
             ))}
           </div>
@@ -502,13 +697,13 @@ export default function Page() {
                   <b>{vehicle.price}</b>
                 </div>
                 <div className="spec-grid">
-                  <span><Users size={16} /> {vehicle.passengers} pasajeros</span>
-                  <span><Luggage size={16} /> {vehicle.bags} maletas</span>
+                  <span><Users size={16} /> {vehicle.passengers} {copy.passengers}</span>
+                  <span><Luggage size={16} /> {vehicle.bags} {copy.bags}</span>
                   <span><Gauge size={16} /> {vehicle.transmission}</span>
                   <span><MapPin size={16} /> {vehicle.zone}</span>
                 </div>
                 <button className="reserve-btn" onClick={() => selectVehicle(vehicle)}>
-                  Ir al sistema de reserva
+                  {copy.reserve}
                 </button>
               </div>
             </article>
@@ -519,41 +714,41 @@ export default function Page() {
       <section id="reservar" className="section muted">
         <div className="wrap reservation-layout">
           <aside className="summary-card">
-            <span className="eyebrow dark">Solicitud</span>
-            <h2>Reserva por WhatsApp</h2>
-            <p>Sin pagos forzados en la web. ULMAX confirma disponibilidad, precio final, entrega y documentos por WhatsApp.</p>
+            <span className="eyebrow dark">{copy.request}</span>
+            <h2>{copy.bookWhatsApp}</h2>
+            <p>{copy.requestText}</p>
             <div className="selected-vehicle">
               <Car size={28} />
               <div>
-                <span>Vehiculo seleccionado</span>
-                <b>{selectedVehicle?.name || reservation.vehicle || 'Pendiente'}</b>
+                <span>{copy.selectedVehicle}</span>
+                <b>{selectedVehicle?.name || reservation.vehicle || copy.pending}</b>
               </div>
             </div>
             <ul>
-              <li><CheckCircle2 size={18} /> Confirmacion personalizada</li>
-              <li><CheckCircle2 size={18} /> Entrega en zona coordinada</li>
-              <li><CheckCircle2 size={18} /> Soporte local antes y durante la renta</li>
+              {copy.summary.map((item) => (
+                <li key={item}><CheckCircle2 size={18} /> {item}</li>
+              ))}
             </ul>
           </aside>
 
           <section className="form-card">
             <div className="form-title">
-              <h2>Datos de la reserva</h2>
-              <span>Campos rapidos</span>
+              <h2>{copy.formTitle}</h2>
+              <span>{copy.quickFields}</span>
             </div>
-            <label>Vehiculo</label>
+            <label>{copy.vehicle}</label>
             <select
               value={reservation.vehicle}
               onChange={(event) => setReservation({ ...reservation, vehicle: event.target.value })}
             >
-              <option value="">Seleccionar vehiculo</option>
+              <option value="">{copy.selectVehicle}</option>
               {vehicles.map((vehicle) => (
                 <option key={vehicle.id} value={vehicle.name}>{vehicle.name}</option>
               ))}
             </select>
             <div className="two-cols">
               <div>
-                <label>Nombre</label>
+                <label>{copy.name}</label>
                 <input value={reservation.name} onChange={(event) => setReservation({ ...reservation, name: event.target.value })} />
               </div>
               <div>
@@ -563,46 +758,46 @@ export default function Page() {
             </div>
             <div className="two-cols">
               <div>
-                <label>Recogida</label>
+                <label>{copy.pickup}</label>
                 <select value={reservation.pickup} onChange={(event) => setReservation({ ...reservation, pickup: event.target.value })}>
-                  <option value="">Seleccionar zona</option>
+                  <option value="">{copy.selectZone}</option>
                   {zones.map((zone) => <option key={zone}>{zone}</option>)}
                 </select>
               </div>
               <div>
-                <label>Entrega</label>
+                <label>{copy.delivery}</label>
                 <select value={reservation.dropoff} onChange={(event) => setReservation({ ...reservation, dropoff: event.target.value })}>
-                  <option value="">Seleccionar zona</option>
+                  <option value="">{copy.selectZone}</option>
                   {zones.map((zone) => <option key={zone}>{zone}</option>)}
                 </select>
               </div>
             </div>
             <div className="three-cols">
               <div>
-                <label>Fecha</label>
+                <label>{copy.date}</label>
                 <input type="date" value={reservation.date} onChange={(event) => setReservation({ ...reservation, date: event.target.value })} />
               </div>
               <div>
-                <label>Hora</label>
+                <label>{copy.time}</label>
                 <input type="time" value={reservation.time} onChange={(event) => setReservation({ ...reservation, time: event.target.value })} />
               </div>
               <div>
-                <label>Dias</label>
+                <label>{copy.days}</label>
                 <input value={reservation.days} onChange={(event) => setReservation({ ...reservation, days: event.target.value })} />
               </div>
             </div>
             <div className="two-cols">
               <div>
-                <label>Vuelo opcional</label>
+                <label>{copy.flight}</label>
                 <input value={reservation.flight} onChange={(event) => setReservation({ ...reservation, flight: event.target.value })} />
               </div>
               <div>
-                <label>Notas</label>
+                <label>{copy.notes}</label>
                 <input value={reservation.notes} onChange={(event) => setReservation({ ...reservation, notes: event.target.value })} />
               </div>
             </div>
             <button className="primary-btn full" onClick={sendReservation}>
-              Enviar solicitud por WhatsApp
+              {copy.sendWhatsApp}
             </button>
           </section>
         </div>
@@ -610,14 +805,10 @@ export default function Page() {
 
       <section className="section process">
         <div className="wrap">
-          <span className="eyebrow dark">Proceso</span>
-          <h2>Simple para el cliente y facil para ULMAX.</h2>
+          <span className="eyebrow dark">{copy.process}</span>
+          <h2>{copy.processTitle}</h2>
           <div className="steps">
-            {[
-              ['Elige vehiculo', 'El usuario compara capacidad, categoria y zona.'],
-              ['Completa solicitud', 'Fecha, hora, recogida, entrega y contacto.'],
-              ['ULMAX confirma', 'El equipo valida disponibilidad y precio final.'],
-            ].map(([title, text], index) => (
+            {copy.steps.map(([title, text], index) => (
               <article key={title} className="step-card">
                 <span>{index + 1}</span>
                 <h3>{title}</h3>
@@ -815,43 +1006,43 @@ export default function Page() {
         <div className="wrap footer-grid">
           <div className="footer-brand">
             <b>{settings.company}</b>
-            <p>{settings.tagline}</p>
-            <a className="footer-whatsapp" href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, necesito informacion para rentar un vehiculo en Punta Cana.')}>
+            <p>{language === 'es' ? settings.tagline : copy.footerTagline}</p>
+            <a className="footer-whatsapp" href={makeWhatsAppUrl(settings.phone, copy.infoLead)}>
               <MessageCircle size={18} /> WhatsApp 24/7
             </a>
           </div>
 
           <div className="footer-col">
-            <span>Contacto</span>
-            <a href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, necesito informacion.')}>WhatsApp: +1 (849) 384-8233</a>
-            <a href={`tel:+${cleanPhone(settings.callPhone, '18493486233')}`}>Llamadas: +1 (849) 348-6233</a>
-            <a href="#reservar">Solicitar reserva</a>
+            <span>{copy.footerContact}</span>
+            <a href={makeWhatsAppUrl(settings.phone, copy.infoLead)}>WhatsApp: +1 (849) 384-8233</a>
+            <a href={`tel:+${cleanPhone(settings.callPhone, '18493486233')}`}>{copy.callLabel}: +1 (849) 348-6233</a>
+            <a href="#reservar">{copy.requestReservation}</a>
           </div>
 
           <div className="footer-col">
-            <span>Servicios</span>
-            <a href="#vehiculos">Rent car en Punta Cana</a>
-            <a href="#vehiculos">Entrega en aeropuerto PUJ</a>
-            <a href="#vehiculos">Hoteles, villas y Airbnb</a>
+            <span>{copy.footerServices}</span>
+            <a href="#vehiculos">{copy.service1}</a>
+            <a href="#vehiculos">{copy.service2}</a>
+            <a href="#vehiculos">{copy.service3}</a>
           </div>
 
           <div className="footer-col">
-            <span>Zonas</span>
-            <a href="#vehiculos">Punta Cana y Bavaro</a>
-            <a href="#vehiculos">Cap Cana y Uvero Alto</a>
-            <a href="#vehiculos">Santo Domingo Airport</a>
+            <span>{copy.footerZones}</span>
+            <a href="#vehiculos">{copy.zone1}</a>
+            <a href="#vehiculos">{copy.zone2}</a>
+            <a href="#vehiculos">{copy.zone3}</a>
           </div>
         </div>
 
         <div className="wrap footer-bottom">
-          <p>© 2026 ULMAX Rent Car. Todos los derechos reservados.</p>
-          <p>Desarrollado por Cynador - Advertising, Marketing Online & Design - Diseño y Desarrollo Web</p>
+          <p>{copy.rights}</p>
+          <p>{copy.credit}</p>
         </div>
       </footer>
 
       <a className="admin-door" href="/admin" aria-label="Admin">Admin</a>
 
-      <a className="floating-whatsapp" href={makeWhatsAppUrl(settings.phone, 'Hola ULMAX Rent Car, quiero rentar un vehiculo en Punta Cana. Fecha, zona y tipo de carro:')}>
+      <a className="floating-whatsapp" href={makeWhatsAppUrl(settings.phone, copy.whatsappLead)}>
         <MessageCircle size={18} /> WhatsApp
       </a>
     </main>
